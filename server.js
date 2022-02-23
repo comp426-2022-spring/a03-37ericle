@@ -6,16 +6,14 @@ const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', port))
 })
 
-app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
-});
 app.get('/app/', (req, res) => {
     // Respond with status 200
-        res.statusCode = 200;
+        res.status(200).end('OK')
+        res.type('text/plain')
     // Respond with status message "OK"
-        res.statusMessage = 'OK';
-        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-        res.end(res.statusCode+ ' ' +res.statusMessage)
+        // res.statusMessage = 'OK';
+        // res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+        // res.end(res.statusCode+ ' ' +res.statusMessage)
     });
 
 app.get('app/flip', (req, res) => {
@@ -25,3 +23,8 @@ app.get('app/flip', (req, res) => {
       }
     res.send(coinFlip())
 })
+
+app.use(function(req, res){
+    res.status(404).send('404 NOT FOUND')
+    res.type('text/plain')
+});
