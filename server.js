@@ -86,11 +86,6 @@ app.get('/app/flips/:number', (req, res) => {
     res.json({'raw': flipsArray, 'summary': countFlips(flipsArray)})
 })
 
-app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
-    res.type('text/plain')
-});
-
 app.get('/app/flip/call/heads', (req, res) => {
     res.status(200)
     res.json(flipACoin("heads"))
@@ -100,3 +95,8 @@ app.get('/app/flip/call/tails', (req, res) => {
     res.status(200)
     res.json(flipACoin("tails"))
 })
+
+app.use(function(req, res){
+  res.status(404).send('404 NOT FOUND')
+  res.type('text/plain')
+});
