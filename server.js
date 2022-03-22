@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
+const args = require('minimist')(process.argv.slice(2));
 
-var port = 5000
+var port = args['port']
 const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', port))
 })
